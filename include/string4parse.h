@@ -1,8 +1,9 @@
-﻿// string4parse.h : Include file for standard system include files,
-// or project specific include files.
-
-#pragma once
+﻿#pragma once
 
 #include <iostream>
 
-// TODO: Reference additional headers your program requires here.
+namespace string4parse {
+  // class template str4p
+  template<class CharT, class Traits = char_traits<CharT>>
+  class str4p;
+}
