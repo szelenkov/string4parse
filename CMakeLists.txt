@@ -12,11 +12,40 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-project ("string4parse" VERSION 3.0.0 LANGUAGES CXX)
+project ("string4parse" LANGUAGES CXX)
 
-# Add source to this project's executable.
-add_executable (string4parse "src/string4parse.cpp" "include/string4parse.h")
+# require C++14
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set_property(TARGET string4parse PROPERTY CXX_STANDARD 20)
+# example library
+add_library(string4parse_lib "src/string4parse.cpp" "include/string4parse.h")
 
-# TODO: Add tests and install targets if needed.
+set_property(TARGET string4parse_lib PROPERTY CXX_STANDARD 20)
+
+# testing binary
+add_executable(string4parse_test "test/string4parse_test.cpp")
+target_link_libraries(string4parse_test PRIVATE string4parse_lib)
+# enable testing functionality
+enable_testing()
+
+include(ExternalProject)
+# Download and install GoogleTest
+ExternalProject_Add(
+    gtest
+    URL https://github.com/google/googletest/archive/release-1.12.1.zip
+    PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gtest
+    # Disable install step
+    INSTALL_COMMAND ""
+)
+
+# Get GTest source and binary directories from CMake project
+ExternalProject_Get_Property(gtest source_dir binary_dir)
+
+# Create a libgtest target to be used as a dependency by test programs
+add_library(libgtest IMPORTED STATIC GLOBAL)
+add_dependencies(libgtest gtest)
+
+# define tests
+add_test(NAME string4parse_test COMMAND $<TARGET_FILE:string4parse_test>)

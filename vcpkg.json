@@ -1,0 +1,22 @@
+{
+    "name": "string4parse",
+    "version-string": "master",
+    "dependencies": [
+        "gtest",
+        "openssl",
+        "zlib"
+    ],
+    "description": "String4Parse is a C++ library for parsing strings with a focus on performance and ease of use.",
+    "homepage": "https://github.com/szelenkov/string4parse",
+    "license": "Creative Commons Legal Code CC0 1.0 Universal",
+    "license-file": "LICENSE",
+    "supports": "x64, x86, arm64",
+    "features": {
+        "ssl": {
+            "description": "Enable SSL support using OpenSSL",
+            "dependencies": [
+                "openssl"
+            ]
+        }
+    }  
+}
