@@ -25,7 +25,7 @@ add_library(string4parse_lib "src/string4parse.cpp" "include/string4parse.h")
 set_property(TARGET string4parse_lib PROPERTY CXX_STANDARD 20)
 
 # testing binary
-add_executable(string4parse_test "test/string4parse_test.cpp")
+add_executable(string4parse_test "tests/string4parse_test.cpp")
 target_link_libraries(string4parse_test PRIVATE string4parse_lib)
 # enable testing functionality
 enable_testing()

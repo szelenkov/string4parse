@@ -3,7 +3,7 @@
 #pragma once
 #ifndef _STRING4PARSE_
 #define _STRING4PARSE_
-
+#include <string.h>
 #include <string>
 #include <stdexcept>
 
@@ -36,19 +36,19 @@ namespace string4parse {
         string4parse& operator=(string4parse&& other) noexcept;
 
         // Iterator functions
-        iterator string4parse::begin() const {
+        iterator begin() const {
           return iterator(*this, 0, 1);
         }
 
-        iterator string4parse::end() const {
+        iterator end() const {
           return iterator(*this, _length, 1);
         }
 
-        iterator string4parse::rbegin() const {
+        iterator rbegin() const {
           return iterator(*this, _length - 1, -1);
         }
 
-        iterator string4parse::rend() const {
+        iterator rend() const {
           return iterator(*this, -1, -1);
         }
 

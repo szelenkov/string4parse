@@ -1,6 +1,5 @@
 // string4parse.cpp : Defines the entry point for the application.
 //
-#include "../include/pch.h"
 #include "../include/string4parse.h"
 
 #include<stdio.h>
@@ -9,7 +8,7 @@ namespace string4parse {
   string4parse::string4parse(std::string&& source) noexcept {
     _offset = 0;
     _length = source.length();
-    std::shared_ptr<Type> tmp(_strdup(source.c_str()));
+    std::shared_ptr<Type> tmp(strdup(source.c_str()));
     _shared_buffer.swap(tmp);
   }
 

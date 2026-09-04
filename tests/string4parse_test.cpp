@@ -1,4 +1,3 @@
-#include "../include/pch.h"
 #include "../include/string4parse.h"
 #include "gtest/gtest.h"
 
