@@ -31,3 +31,6 @@ out/
 *.exe
 *.out
 *.app
+vcpkg_installed/
+.settings/
+vcpkg-configuration.json
